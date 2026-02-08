@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { connectWallet, checkIfWalletIsConnected } from './utils/wallet'
 import { getProvider, getSigner, getTokenContract, getFaucetContract, formatUnits } from './utils/contracts'
 import { ethers } from "ethers";
+import { setupEvaluation } from './utils/evaluation'
 
 function App() {
     const [currentAccount, setCurrentAccount] = useState("")
@@ -45,6 +46,7 @@ function App() {
     }
 
     useEffect(() => {
+        setupEvaluation();
         checkIfWalletIsConnected().then(account => {
             if (account) {
                 setCurrentAccount(account);
